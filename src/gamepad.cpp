@@ -110,6 +110,31 @@ void Gamepad::read()
 		| ((values & mapButtonA2->pinMask)  ? mapButtonA2->buttonMask  : 0)
 	;
 
+	// Keyboard buttons
+	state.dpad = 0
+		| (keyboardUp == true  ? 1  : 0)
+		| (keyboardDown == true  ? 2  : 0)
+		| (keyboardLeft == true  ? 4  : 0)
+		| (keyboardRight == true  ? 8  : 0)
+	;
+
+	state.buttons = 0
+		| (keyboardB1 == true  ? 1  : 0)
+		| (keyboardB2 == true  ? 2  : 0)
+		| (keyboardB3 == true  ? 4  : 0)
+		| (keyboardB4 == true  ? 8  : 0)
+		| (keyboardL1 == true  ? 16  : 0)
+		| (keyboardR1 == true  ? 32  : 0)
+		| (keyboardL2 == true  ? 64  : 0)
+		| (keyboardR2 == true  ? 128  : 0)
+		| (keyboardS1 == true  ? 256  : 0)
+		| (keyboardS2 == true  ? 512  : 0)
+		| (keyboardL3 == true  ? 1024  : 0)
+		| (keyboardR3 == true  ? 2048  : 0)
+		| (keyboardA1 == true  ? 4096  : 0)
+		| (keyboardA2 == true  ? 8192  : 0)
+	;
+
 	state.lx = GAMEPAD_JOYSTICK_MID;
 	state.ly = GAMEPAD_JOYSTICK_MID;
 	state.rx = GAMEPAD_JOYSTICK_MID;
