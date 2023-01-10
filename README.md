@@ -1,4 +1,10 @@
-# GP2040-CE | Community Edition Firmware Drifter Adapter
+# KB2040 | HID to MPG Converter
+
+KB2040 is a GP2040-CE fork that utilizes USB Host functionality to poll a USB keyboard instead of individual GPIO pins. The primary aim of this firmware is to allow multiple keyboard users to play multiplayer games locally without overlapping inputs, and to further extend the compatibility of USB keyboards on PC as well as other platforms.
+
+Below is the standard section for GP2040-CE
+
+# GP2040-CE | Community Edition Firmware
 
 GP2040-CE is a gamepad firmware for the Raspberry Pi Pico and other boards based on the RP2040 microcontroller, and provides high performance with a rich feature set across multiple platforms. GP2040-CE is compatible with PC, MiSTer, Android, Raspberry Pi, Nintendo Switch, PS3 and PS4 (legacy controller support).
 
