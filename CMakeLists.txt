@@ -28,6 +28,7 @@ FetchContent_MakeAvailable(ArduinoJson)
 pico_sdk_init()
 add_subdirectory(lib)
 add_subdirectory(MPG)
+add_subdirectory(Pico-PIO-USB)
 
 add_executable(${PROJECT_NAME}
 src/main.cpp
@@ -57,6 +58,7 @@ pico_set_program_version(GP2040-CE "0.6.0")
 
 target_link_libraries(${PROJECT_NAME} 
 MPG
+pico_pio_usb
 pico_stdlib
 pico_bootsel_via_double_reset
 AnimationStation

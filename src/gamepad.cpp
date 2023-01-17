@@ -112,14 +112,14 @@ void Gamepad::read()
 
 	// Keyboard buttons
 	state.dpad = 0
-		| (keyboardUp == true  ? 1  : 0)
-		| (keyboardDown == true  ? 2  : 0)
+		| (keyboardUp == true  ? GAMEPAD_MASK_UP  : 0)
+		| (keyboardDown == true  ? GAMEPAD_MASK_DOWN  : 0)
 		| (keyboardLeft == true  ? 4  : 0)
 		| (keyboardRight == true  ? 8  : 0)
 	;
 
 	state.buttons = 0
-		| (keyboardB1 == true  ? 1  : 0)
+		| (keyboardB1 == true  ? GAMEPAD_MASK_UP  : 0)
 		| (keyboardB2 == true  ? 2  : 0)
 		| (keyboardB3 == true  ? 4  : 0)
 		| (keyboardB4 == true  ? 8  : 0)

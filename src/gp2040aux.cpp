@@ -33,5 +33,7 @@ void GP2040Aux::run() {
 		}
 		addons.ProcessAddons(CORE1_LOOP);
 		nextRuntime = getMicro() + GAMEPAD_POLL_MICRO;
+
+		pio_usb_host_task(); // Pio usb task
 	}
 }
