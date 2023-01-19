@@ -15,7 +15,14 @@
 #include "gp2040.h"
 #include "gp2040aux.h"
 
-static usb_device_t *usb_device = NULL;
+// Keyboard includes
+#include "keyboard.h"
+
+usb_device_t *usb_device = NULL;
+bool keyboardUp = false;
+bool keyboardDown = false;
+bool keyboardLeft = false;
+bool keyboardRight = false;
 
 // Launch our second core with additional modules loaded in
 void core1() {

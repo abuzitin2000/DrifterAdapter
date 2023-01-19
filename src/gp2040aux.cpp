@@ -12,6 +12,9 @@
 
 #include <iterator>
 
+// Pio includes
+#include "pio_usb.h"
+
 GP2040Aux::GP2040Aux() : nextRuntime(0) {
 }
 

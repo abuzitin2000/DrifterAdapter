@@ -10,6 +10,9 @@
 #include "FlashPROM.h"
 #include "CRC32.h"
 
+// Keyboard includes
+#include "keyboard.h"
+
 // MUST BE DEFINED for mpgs
 uint32_t getMillis() {
 	return to_ms_since_boot(get_absolute_time());
@@ -86,38 +89,15 @@ void Gamepad::read()
 	;
 	#endif
 
-	state.dpad = 0
-		| ((values & mapDpadUp->pinMask)    ? (options.invertYAxis ? mapDpadDown->buttonMask : mapDpadUp->buttonMask) : 0)
-		| ((values & mapDpadDown->pinMask)  ? (options.invertYAxis ? mapDpadUp->buttonMask : mapDpadDown->buttonMask) : 0)
-		| ((values & mapDpadLeft->pinMask)  ? mapDpadLeft->buttonMask  : 0)
-		| ((values & mapDpadRight->pinMask) ? mapDpadRight->buttonMask : 0)
-	;
-
-	state.buttons = 0
-		| ((values & mapButtonB1->pinMask)  ? mapButtonB1->buttonMask  : 0)
-		| ((values & mapButtonB2->pinMask)  ? mapButtonB2->buttonMask  : 0)
-		| ((values & mapButtonB3->pinMask)  ? mapButtonB3->buttonMask  : 0)
-		| ((values & mapButtonB4->pinMask)  ? mapButtonB4->buttonMask  : 0)
-		| ((values & mapButtonL1->pinMask)  ? mapButtonL1->buttonMask  : 0)
-		| ((values & mapButtonR1->pinMask)  ? mapButtonR1->buttonMask  : 0)
-		| ((values & mapButtonL2->pinMask)  ? mapButtonL2->buttonMask  : 0)
-		| ((values & mapButtonR2->pinMask)  ? mapButtonR2->buttonMask  : 0)
-		| ((values & mapButtonS1->pinMask)  ? mapButtonS1->buttonMask  : 0)
-		| ((values & mapButtonS2->pinMask)  ? mapButtonS2->buttonMask  : 0)
-		| ((values & mapButtonL3->pinMask)  ? mapButtonL3->buttonMask  : 0)
-		| ((values & mapButtonR3->pinMask)  ? mapButtonR3->buttonMask  : 0)
-		| ((values & mapButtonA1->pinMask)  ? mapButtonA1->buttonMask  : 0)
-		| ((values & mapButtonA2->pinMask)  ? mapButtonA2->buttonMask  : 0)
-	;
-
 	// Keyboard buttons
 	state.dpad = 0
 		| (keyboardUp == true  ? GAMEPAD_MASK_UP  : 0)
 		| (keyboardDown == true  ? GAMEPAD_MASK_DOWN  : 0)
-		| (keyboardLeft == true  ? 4  : 0)
-		| (keyboardRight == true  ? 8  : 0)
+		| (keyboardLeft == true  ? GAMEPAD_MASK_LEFT  : 0)
+		| (keyboardRight == true  ? GAMEPAD_MASK_RIGHT  : 0)
 	;
 
+	/*
 	state.buttons = 0
 		| (keyboardB1 == true  ? GAMEPAD_MASK_UP  : 0)
 		| (keyboardB2 == true  ? 2  : 0)
@@ -134,6 +114,7 @@ void Gamepad::read()
 		| (keyboardA1 == true  ? 4096  : 0)
 		| (keyboardA2 == true  ? 8192  : 0)
 	;
+	*/
 
 	state.lx = GAMEPAD_JOYSTICK_MID;
 	state.ly = GAMEPAD_JOYSTICK_MID;

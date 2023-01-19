@@ -20,6 +20,12 @@
 #include "usb_driver.h"
 #include "tusb.h"
 
+// Keycodes
+#include "keycode.h"
+
+// Keyboard includes
+#include "keyboard.h"
+
 #define GAMEPAD_DEBOUNCE_MILLIS 5 // make this a class object
 
 GP2040::GP2040() : nextRuntime(0) {
@@ -104,12 +110,26 @@ void GP2040::run() {
 					uint8_t temp[64];
 					int len = pio_usb_get_in_data(ep, temp, sizeof(temp));
 
+					keyboardUp = false;
+					keyboardDown = false;
+					keyboardLeft = false;
+					keyboardRight = false;
+
 					if (len > 0) {
-						printf("%04x:%04x EP 0x%02x:\t", device->vid, device->pid, ep->ep_num);
 						for (int i = 0; i < len; i++) {
-							printf("%02x ", temp[i]);
+							if (temp[i] == KC_A) {
+								keyboardLeft = true;
+							}
+							if (temp[i] == KC_D) {
+								keyboardRight = true;
+							}
+							if (temp[i] == KC_W) {
+								keyboardUp = true;
+							}
+							if (temp[i] == KC_S) {
+								keyboardDown = true;
+							}
 						}
-						printf("\n");
 					}
 				}
 			}
